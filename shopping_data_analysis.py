@@ -73,7 +73,8 @@ grouped_chart = alt.Chart(df_grouped).mark_bar().encode(
     y = groupby_column,
     color = alt.Color(field = colorise_operation,
                       type = "quantitative",
-                      legend = alt.Legend(title= ''.join([colorise_operation, ' of the ', color_column, ' Column'])),
+                      legend = alt.Legend(title= ''.join([colorise_operation, ' of the ', color_column, ' Column']),
+                                          orient = 'bottom'),
                       scale = alt.Scale(scheme = alt.SchemeParams(name = 'turbo',
                                                                   extent = [0.5, 1]))
                       ),
@@ -88,12 +89,19 @@ grouped_chart = alt.Chart(df_grouped).mark_bar().encode(
     height = 500,
     width = 1000
 )
+with col1:
+    st.write(df_grouped)
 
-col1.write(df_grouped)
+with col2:
+    st.altair_chart(grouped_chart, use_container_width=True)
+    
+    
+    
+#col1.write(df_grouped)
 
 
 
-col2.altair_chart(grouped_chart, use_container_width=True)
+#col2.altair_chart(grouped_chart, use_container_width=True)
 
 
 
